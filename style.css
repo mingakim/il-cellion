@@ -1,0 +1,198 @@
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 100;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-Thin.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 200;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 300;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-Light.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 400;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 500;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 600;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 700;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-Bold.ttf);
+}
+
+@font-face {
+    font-family: "SUIT";
+    font-weight: 800;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 900;
+    font-style: normal;
+    src: url(/SUIT-ttf/SUIT-Heavy.ttf);
+}
+
+@font-face {
+    font-family: 'NanumSquareNeo';
+    font-weight: 700;
+    font-style: normal;
+    src: url(/nanum-square-neo/TTF/NanumSquareNeo-cBd.ttf);
+}
+
+@font-face {
+    font-family: 'NanumSquareNeo';
+    font-weight: 800;
+    font-style: normal;
+    src: url(/nanum-square-neo/TTF/NanumSquareNeo-dEb.ttf);
+}
+
+@font-face {
+    font-family: 'NanumSquareNeo';
+    font-weight: 900;
+    font-style: normal;
+    src: url(/nanum-square-neo/TTF/NanumSquareNeo-eHv.ttf);
+}
+
+
+body, ul, li, p, span {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-family: 'SUIT', 'Apple SD Gothic Neo', Helvetica, '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, sans-serif;
+}
+
+.scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 4px;
+}
+
+/* 커스텀 */
+/* header 시작 */
+.header {
+    width: 100%;
+    height: 96px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(241, 241, 241, 0.2);
+    z-index: 100;
+}
+
+.header .h_inner {
+    height: 100%;
+    display: flex;
+}
+
+.header .logo {      
+    display: flex;
+    margin-left: 60px;
+    cursor: pointer;
+}
+
+.header .logo .logo-box {
+    width: 150px;
+    height: 100%; 
+    background-image: url(/아이엘셀리온images/logo-w.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    border: 1px solid red;
+}
+
+.header .menu-box {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header .menu-box > ul {
+    height: 100%;
+    display: flex;
+    gap: 40px;
+}
+
+.header .menu-box > ul > li > a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.header .menu-box > ul > li > a > span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.scroller {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden !important; 
+                                /* 기본스크롤바 숨기기 */
+    
+}
+
+
+.visual {
+    height: 100vh;
+    width: 100%;
+    background-image: url(/아이엘셀리온images/bg_main_img1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #000;
+    transition: background-size 5s ease;
+}
+
+/* header 끝 */
