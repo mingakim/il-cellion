@@ -1,3 +1,27 @@
+$('.header .menu-box  ul').mouseenter(function(){
+    $('.header .logo .logo-box').addClass('active');
+    $('.header .menu-box').addClass('active');
+    $('.header .menu-box > ul > li').each(function() {
+        // 자식 ul이 있는지 확인
+        if ($(this).children('ul').length > 0) {
+            // 자식 ul이 있으면 .nav-bg에 .active 클래스를 추가
+            $('.header .nav-bg').addClass('active');
+        } else {
+            // 자식 ul이 없으면 .nav-bg에 .color 클래스를 추가
+            $('.header .nav-bg').addClass('color');
+        }
+    });
+});
+
+$('.header .menu-box  ul').mouseleave(function(){
+    $('.header .logo .logo-box').removeClass('active');
+    $('.header .menu-box').removeClass('active'); 
+    $('.header .nav-bg').removeClass('active color');   
+});
+
+
+
+
 const bodyScroller = document.querySelector('.scroller');
 bodyScrollBar = Scrollbar.init(bodyScroller, {
     speed: 10,
@@ -9,7 +33,7 @@ bodyScrollBar = Scrollbar.init(bodyScroller, {
 
 
 
-var ii = 1; // 이미지 인덱스 변수
+var ii = 1; // 이미지 변수
 var mcnt = 2;  //변수 
 
 $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img1.png)');
@@ -22,9 +46,8 @@ setInterval(() => {
     ii++;  // 이미지 순차적으로 증가
 
     if(ii >= 3) ii = 0; 
-    
 
-    // 홀수 번째는 커지고, 짝수 번째는 작아짐
+
     if (mcnt % 2 == 1) {
         // 홀수 번째 이미지 (1, 3, ...) 커짐 (100% -> 120%)
         $('.visual').css('background-size', '120%');

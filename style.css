@@ -144,7 +144,16 @@ body {
     background-image: url(/아이엘셀리온images/logo-w.svg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: 150px auto;
+}
+
+.header .logo .logo-box.active {
+    width: 150px;
+    height: 100%; 
+    background-image: url(/아이엘셀리온images/ci_logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150px auto;
 }
 
 .header .menu-box {
@@ -157,15 +166,19 @@ body {
 
 .header .menu-box > ul {
     height: 100%;
-    display: flex;
-    gap: 40px;
+    display: flex;       
+}
+
+.header .menu-box > ul > li {    
+    position: relative;
 }
 
 .header .menu-box > ul > li > a {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;  
+    padding-right: 40px; 
 }
 
 .header .menu-box > ul > li > a > span {
@@ -174,6 +187,78 @@ body {
     color: #fff;
 }
 
+.header .menu-box  ul > li > a > span{
+    white-space: nowrap;
+    transition: color .2s;
+}
+
+.header .menu-box.active ul > li:hover > a > span{
+    color: #8d9eb7;
+}
+
+.header .menu-box.active ul > li:not(:hover) > a > span{
+    color: #1c1219;
+}
+
+
+.header .menu-box > ul ul {
+    display: none;
+}
+
+.header .menu-box > ul > li:hover > a + ul  {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: flex;
+    opacity: 0;
+    padding: 25px 0;
+    gap: 40px;
+    z-index: 10;
+    animation: show .3s ease .1s forwards;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.header .menu-box > ul ul > li > a {
+    padding: 8px 0;
+}
+
+
+.header .nav-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 96px;
+    z-index: -1;
+    background-color: transparent;
+    transition: all .3s;
+}
+
+.header .nav-bg.color {
+    background-color: #fff;
+}
+
+
+.header .nav-bg.active {
+    height: 192px;
+    background-color: #fff;
+}
+
+
+
+/* header 끝 */
+
+
+/* scroll시작 */
 .scroller {
     height: 100vh;
     width: 100%;
@@ -182,7 +267,7 @@ body {
     
 }
 
-
+/* visual 시작 */
 .visual {
     height: 100vh;
     width: 100%;
@@ -193,4 +278,6 @@ body {
     transition: background-size 5s ease;
 }
 
-/* header 끝 */
+/* visual 끝 */
+
+/* scroll끝 */
