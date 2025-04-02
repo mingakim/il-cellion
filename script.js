@@ -1,7 +1,10 @@
-$('.header .menu-box  ul').mouseenter(function(){
+
+//header 효과
+$('.header .menu-box > ul > li').mouseenter(function(){
     $('.header .logo .logo-box').addClass('active');
     $('.header .menu-box').addClass('active');
-    $('.header .menu-box > ul > li').each(function() {
+    $('.header .nav-bg').removeClass('active color');
+    $('.header .menu-box > ul > li').each(function() {        
         // 자식 ul이 있는지 확인
         if ($(this).children('ul').length > 0) {
             // 자식 ul이 있으면 .nav-bg에 .active 클래스를 추가
@@ -13,7 +16,7 @@ $('.header .menu-box  ul').mouseenter(function(){
     });
 });
 
-$('.header .menu-box  ul').mouseleave(function(){
+$('.header .menu-box > ul > li').mouseleave(function(){
     $('.header .logo .logo-box').removeClass('active');
     $('.header .menu-box').removeClass('active'); 
     $('.header .nav-bg').removeClass('active color');   
@@ -21,20 +24,21 @@ $('.header .menu-box  ul').mouseleave(function(){
 
 
 
-
+// scroller설정
 const bodyScroller = document.querySelector('.scroller');
 bodyScrollBar = Scrollbar.init(bodyScroller, {
     speed: 10,
     damping: 0.05,
     mobile: {
-        speed: 0.6
+        speed: 0.6,
     }
 });
 
 
 
+//visual이미지 효과
 var ii = 1; // 이미지 변수
-var mcnt = 2;  //변수 
+var mcnt = 2;  //순서  
 
 $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img1.png)');
 $('.visual').css('background-size', '120%');
@@ -59,3 +63,14 @@ setInterval(() => {
     mcnt++;
 
 }, 4500);  // 4.5초마다 배경 이미지 변경
+
+
+
+
+//visual big-logo-text효과
+gsap.from('.visual .big-logo-text > span', {
+    y: "100%",  // 아래에서 위로 올라오는 애니메이션
+    duration: 0.2,
+    ease: 'SlowMo.easeIn',  //효과
+    stagger: 0.135,  // 각 문자마다 애니메이션 시작을 다르게 설정
+  });

@@ -84,7 +84,7 @@
 }
 
 
-body, ul, li, p, span {
+body, ul, li, p, span, h1, h2 {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -145,12 +145,13 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 150px auto;
+    transition: background-image .3s;
 }
 
 .header .logo .logo-box.active {
     width: 150px;
     height: 100%; 
-    background-image: url(/아이엘셀리온images/ci_logo.png);
+    background-image: url(/아이엘셀리온images/logo-h.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 150px auto;
@@ -211,8 +212,9 @@ body {
     left: 0;
     display: flex;
     opacity: 0;
-    padding: 25px 0;
-    gap: 40px;
+    visibility: hidden;
+    padding: 30px 0;
+    gap: 80px;
     z-index: 10;
     animation: show .3s ease .1s forwards;
 }
@@ -220,17 +222,25 @@ body {
 @keyframes show {
     0% {
         opacity: 0;
+        visibility: hidden;
     }
     100% {
         opacity: 1;
+        visibility: visible;
     }
 }
 
 
 .header .menu-box > ul ul > li > a {
     padding: 8px 0;
+    display: block;
 }
 
+
+.header .menu-box > ul ul > li > a > span {
+    font-size: 16px;
+    font-weight: 500;
+}
 
 .header .nav-bg {
     position: absolute;
@@ -240,10 +250,12 @@ body {
     height: 96px;
     z-index: -1;
     background-color: transparent;
-    transition: all .3s;
+    transition: all .35s;
 }
 
+
 .header .nav-bg.color {
+    height: 96px;
     background-color: #fff;
 }
 
@@ -253,9 +265,18 @@ body {
     background-color: #fff;
 }
 
-
-
+.header .nav-bg.active::after {
+    content: "";
+    position: absolute;
+    top: 95px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #f1f1f1;
+}
 /* header 끝 */
+
+
 
 
 /* scroll시작 */
@@ -270,12 +291,46 @@ body {
 /* visual 시작 */
 .visual {
     height: 100vh;
-    width: 100%;
+    width: 100%;    
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
     background-color: #000;
     transition: background-size 5s ease;
+}
+
+.visual .v_inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.visual .visual_text {
+    margin-top: 40vh;
+    font-size: clamp(40px, 8.667vw, 60px);
+    color: #fff;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+.visual .big-logo-text {
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+    line-height: 0.7;
+              /* 텍스트박스 높이를 줄이기위해 */
+}
+
+.visual .big-logo-text > span {
+    position: relative;
+    color: #fff;
+    font-weight: 900;
+    letter-spacing: -1px;
+    font-size: clamp(30px, 15.667vw, 380px);
+               /* (최소값,최적값,최대값) (30px,뷰포트 15.667%, 380px) */
+    /* transform: translate(0, 0);     */
 }
 
 /* visual 끝 */
