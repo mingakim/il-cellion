@@ -145,7 +145,6 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-    border: 1px solid red;
 }
 
 .header .menu-box {
@@ -187,7 +186,6 @@ body {
 .visual {
     height: 100vh;
     width: 100%;
-    background-image: url(/아이엘셀리온images/bg_main_img1.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;

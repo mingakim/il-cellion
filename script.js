@@ -9,30 +9,30 @@ bodyScrollBar = Scrollbar.init(bodyScroller, {
 
 
 
+var ii = 1; // 이미지 인덱스 변수
+var mcnt = 2;  //변수 
 
-const images = [
-    "/아이엘셀리온images/bg_main_img1.png",
-    "/아이엘셀리온images/bg_main_img2.png",
-    "/아이엘셀리온images/bg_main_img3.png"
-];
-
-let currentImageIndex = 0; // 현재 이미지 인덱스
-
-$('.visual').css('background-image', 'url(' + images[currentImageIndex] + ')');
-$('.visual').css('background-size', '120%'); // 첫 번째 이미지는 기본적으로 크기 120%
+$('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img1.png)');
+$('.visual').css('background-size', '120%');
 
 setInterval(() => {
-    currentImageIndex = (currentImageIndex + 1) % images.length;  // 이미지 순차적으로 변경
-
     // 배경 이미지 변경
-    $('.visual').css('background-image', 'url(' + images[currentImageIndex] + ')');
+    $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img' + (ii + 1) + '.png)');
+
+    ii++;  // 이미지 순차적으로 증가
+
+    if(ii >= 3) ii = 0; 
+    
 
     // 홀수 번째는 커지고, 짝수 번째는 작아짐
-    if (currentImageIndex % 2 == 0) {
-        // 홀수 번째 이미지 (0, 2, ...) 커짐 (100% -> 120%)
+    if (mcnt % 2 == 1) {
+        // 홀수 번째 이미지 (1, 3, ...) 커짐 (100% -> 120%)
         $('.visual').css('background-size', '120%');
     } else {
-        // 짝수 번째 이미지 (1, 3, ...) 작아짐 (120% -> 100%)
+        // 짝수 번째 이미지 (2, 4, ...) 작아짐 (120% -> 100%)
         $('.visual').css('background-size', '100%');
     }
+
+    mcnt++;
+
 }, 4500);  // 4.5초마다 배경 이미지 변경
