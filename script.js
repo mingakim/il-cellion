@@ -27,15 +27,9 @@ $('.header .menu-box > ul > li').mouseleave(function(){
 
 
 
-// scroller설정
-const bodyScroller = document.querySelector('.scroller');
-bodyScrollBar = Scrollbar.init(bodyScroller, {
-    speed: 10,
-    damping: 0.05,
-    mobile: {
-        speed: 0.6,
-    }
-});
+
+
+
 
 
 
@@ -114,8 +108,55 @@ gsap.from('.visual .big-logo-text > span', {
 
 
 
+// scroller 설정
+const bodyScroller = document.querySelector('.scroller');
+bodyScrollBar = Scrollbar.init(bodyScroller, {
+    speed: 10,
+    damping: 0.05,
+    mobile: {
+        speed: 0.6
+    }
+});
+bodyScrollBar.setPosition(0, 0);
+bodyScrollBar.track.xAxis.element.remove();
+ScrollTrigger.scrollerProxy(bodyScroller, {
+    scrollTop(value) {
+        if (arguments.length) {
+            bodyScrollBar.scrollTop = value;
+        }
+        return bodyScrollBar.scrollTop;
+    }
+});
+bodyScrollBar.addListener(ScrollTrigger.update);
+ScrollTrigger.defaults({
+    scroller: bodyScroller
+});
+Scrollbar.initAll(); //smooth-scrollbar (모든 스크롤영역에 data-scrollbar 적용)
+
+AOS.init({
+    easing: 'ease-out-quart',
+    duration: 1200,
+    once: true,
+});
 
 
-AOS.init();
+gsap.registerPlugin(ScrollTrigger);
+let getAllAos = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'))
+getAllAos.length > 0 && getAllAos.forEach((item) => {
+    gsap.to(item, {
+        scrollTrigger: {
+            trigger: item,
+            start: 'top center',
+            end: 'bottom center',
+            once: true,
+            onEnter: (scroll) => {
+                item.addClass('aos-animate');
+            }
+        }
+    })
+});
+
+
+
 
 
