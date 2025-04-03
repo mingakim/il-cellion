@@ -24,6 +24,9 @@ $('.header .menu-box > ul > li').mouseleave(function(){
 
 
 
+
+
+
 // scroller설정
 const bodyScroller = document.querySelector('.scroller');
 bodyScrollBar = Scrollbar.init(bodyScroller, {
@@ -36,21 +39,25 @@ bodyScrollBar = Scrollbar.init(bodyScroller, {
 
 
 
+
+
+
 //visual이미지 효과
 var ii = 1; // 이미지 변수
-var mcnt = 2;  //순서  
+var mcnt = 2;  //두번째부터 시작  
 
+  //첫번째 이미지 지정
 $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img1.png)');
 $('.visual').css('background-size', '120%');
 
 setInterval(() => {
     // 배경 이미지 변경
-    $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img' + (ii + 1) + '.png)');
+    $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img' + (ii + 1) + '.png)'); 
 
-    ii++;  // 이미지 순차적으로 증가
+    ii++;  //순차적으로 증가
 
-    if(ii >= 3) ii = 0; 
-
+    if(ii >= 3) ii = 0;    
+    
 
     if (mcnt % 2 == 1) {
         // 홀수 번째 이미지 (1, 3, ...) 커짐 (100% -> 120%)
@@ -67,10 +74,48 @@ setInterval(() => {
 
 
 
-//visual big-logo-text효과
+
+
+
+//visual visual_title 효과
+var titleIndex = 0;
+
+$('.visual .visual_title').hide();
+$('.visual .visual_title:eq(0)').show();
+
+setInterval(() => {
+    titleIndex++;  //순차적으로 증가
+
+    if(titleIndex >= 3) titleIndex = 0; 
+
+    $('.visual .visual_title').hide();
+    $('.visual .visual_title:eq(' + titleIndex + ')').show();
+
+    gsap.from('.visual .visual_title', {
+        y: '10%',
+        opacity: 0.0,
+        duration: 1,
+        ease: 'Power1.easeIn',
+    });
+}, 4500);
+
+
+
+
+
+
+//visual big-logo-text효과    
 gsap.from('.visual .big-logo-text > span', {
     y: "100%",  // 아래에서 위로 올라오는 애니메이션
     duration: 0.2,
-    ease: 'SlowMo.easeIn',  //효과
-    stagger: 0.135,  // 각 문자마다 애니메이션 시작을 다르게 설정
-  });
+    ease: 'power1.in',
+    stagger: 0.13
+});
+
+
+
+
+
+AOS.init();
+
+

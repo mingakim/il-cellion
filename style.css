@@ -103,6 +103,7 @@ body {
     max-width: 100vw;
     overflow-x: hidden;
     font-family: 'SUIT', 'Apple SD Gothic Neo', Helvetica, '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, sans-serif;
+    word-break: keep-all;
 }
 
 .scrollbar-thumb {
@@ -113,6 +114,11 @@ body {
     height: 8px;
     background: rgba(0, 0, 0, .5);
     border-radius: 4px;
+}
+
+.con {
+    max-width: 1346px;
+    margin: 0 auto;
 }
 
 /* 커스텀 */
@@ -296,7 +302,7 @@ body {
     background-repeat: no-repeat;
     background-size: 100%;
     background-color: #000;
-    transition: background-size 5s ease;
+    transition: background-image 1.5s ease, background-size 5s ease;
 }
 
 .visual .v_inner {
@@ -307,7 +313,7 @@ body {
     position: relative;
 }
 
-.visual .visual_text {
+.visual .visual_title {
     margin-top: 40vh;
     font-size: clamp(40px, 8.667vw, 60px);
     color: #fff;
@@ -316,23 +322,31 @@ body {
 }
 
 .visual .big-logo-text {
-    position: relative;
-    bottom: 0;
     margin-top: auto;
     line-height: 0.7;
               /* 텍스트박스 높이를 줄이기위해 */
 }
 
 .visual .big-logo-text > span {
-    position: relative;
+    display: inline-block;
+        /* inline-block으로 설정해야 animation이 적용된다!!! */
     color: #fff;
     font-weight: 900;
     letter-spacing: -1px;
     font-size: clamp(30px, 15.667vw, 380px);
                /* (최소값,최적값,최대값) (30px,뷰포트 15.667%, 380px) */
-    /* transform: translate(0, 0);     */
+    transform: translate(0, 0);    
+}
+/* visual 끝 */
+
+
+
+/* section-1 시작 */
+.section-1 {
+    margin-top: 130px;
 }
 
-/* visual 끝 */
+.section-1 
+/* section-1 끝 */
 
 /* scroll끝 */
