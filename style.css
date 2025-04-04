@@ -288,6 +288,16 @@ img {
     height: 1px;
     background-color: #f1f1f1;
 }
+
+.header.scroll-down {
+    top: -96px;
+    transition: top .3s;
+}
+
+.header.scroll-up {
+    top: 0;
+    transition: top .3s;
+}
 /* header 끝 */
 
 
@@ -308,8 +318,8 @@ img {
     height: 100vh;
     width: 100%;    
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background-repeat: no-repeat;    
+    background-size: 120%;
     background-color: #000;
     transition: background-image 1.5s ease, background-size 5s ease;
 }
@@ -358,37 +368,98 @@ img {
 .section-1 .card {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
+    align-items: center;    
+    gap: 8px;
 }
 
-.section-1 .card .txt-box h3 {
+.section-1 .card h3 {
     font-size: clamp(14px, 6.867vw, 45px);    
     line-height: 1.1;
 }
 
 .section-1 .card-1 .txt-box h3 {    
     font-weight: 900;
+    padding-left: 20px;
 }
-
 
 .section-1 .card-2 {
-    margin-top: 100px;
+    margin-top: 100px;      
 }
-.section-1 .card-2 .txt-box h3 {   
+
+.section-1 .card-2 .txt-box {
+    min-width: 260px; 
+    position: relative;    
+}
+
+.section-1 .card-2 .txt-box > h3 {
+    opacity: 0;
+}
+
+.section-1 .card-2 > h3 {   
     font-weight: 500;
     position: absolute;
-    top: 50%;
-    left: 0;
     margin-left: 6vw;
-    transform: translateY(-50%);
+    white-space: nowrap;
 }
 
 
-.section-1 .card-2 .txt-box h3 strong {
+.section-1 .card-2 > h3 > strong {
     font-weight: 700;
 }
 
+@media screen and (max-width: 960px) {
+    .section-1 .card-1 .txt-box h3 {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .section-1 .card {
+        flex-direction: column;
+    }
+
+    .section-1 .card-2 > h3 {
+        margin-left: 0vw;
+    }
+
+    .section-1 .card-2 .img-box {
+        margin-top: 50px;
+    }
+}
 /* section-1 끝 */
 
+
+
+/* section-2시작 */
+.section-2 {
+    margin-top: 200px;
+    margin-bottom: 100px;
+    padding-bottom: 100px;
+}
+
+.section-2 .bg-box {
+    background-image: url(/아이엘셀리온images/bg_with_dimmed.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 100px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+.section-2 .bg-box h3 {
+    padding-bottom: 100px;
+    font-size: clamp(14px, 6.867vw, 45px);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-left: 6vw;
+    color: #fff;
+    margin-top: -10vh;
+}
+
+
+/* section-2끝 */
 /* scroll끝 */

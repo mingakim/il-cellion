@@ -1,3 +1,13 @@
+// scroller 설정
+const bodyScroller = document.querySelector('.scroller');
+bodyScrollBar = Scrollbar.init(bodyScroller, {
+    speed: 10,
+    damping: 0.05,
+    mobile: {
+        speed: 0.6
+    }
+});
+
 
 //header 효과
 $('.header .menu-box > ul > li').mouseenter(function(){
@@ -25,6 +35,21 @@ $('.header .menu-box > ul > li').mouseleave(function(){
 
 
 
+bodyScrollBar.addListener(function (){
+    let lastScrollTop = 0;
+    const delta = 15;    
+    const st = bodyScrollBar.scrollTop;
+    if(Math.abs(lastScrollTop - st) <= delta) return;
+    if(st > lastScrollTop && st > lastScrollTop > 0) {
+        $('.header').addClass('scroll-down').removeClass('scroll-up');   
+        // 스크롤 내렸을 때
+    }
+    else {
+        $('.header').removeClass('scroll-down').addClass('scroll-up');
+        // 스크롤 올렸을 때
+    };
+    lastScrollTop = st;    
+});
 
 
 
@@ -37,35 +62,36 @@ $('.header .menu-box > ul > li').mouseleave(function(){
 
 
 //visual이미지 효과
-var ii = 1; // 이미지 변수
-var mcnt = 2;  //두번째부터 시작  
 
-  //첫번째 이미지 지정
-$('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img1.png)');
-$('.visual').css('background-size', '120%');
 
-setInterval(() => {
-    // 배경 이미지 변경
-    $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img' + (ii + 1) + '.png)'); 
+$('.visual').css('background-image', 'url(/아이엘셀리온images/bg_main_img1.png)')
+$('.visual').css('background-size', '100%');
 
+
+var ii = 0; // 이미지 변수
+var mcnt = 0;  
+
+
+setInterval(() => {      
+    
     ii++;  //순차적으로 증가
-
+    
     if(ii >= 3) ii = 0;    
     
-
+    mcnt++;
+    
+    // 배경 이미지 변경
+    $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img' + (ii + 1) + '.png)'); 
+        
     if (mcnt % 2 == 1) {
         // 홀수 번째 이미지 (1, 3, ...) 커짐 (100% -> 120%)
         $('.visual').css('background-size', '120%');
     } else {
         // 짝수 번째 이미지 (2, 4, ...) 작아짐 (120% -> 100%)
         $('.visual').css('background-size', '100%');
-    }
-
-    mcnt++;
+    }       
 
 }, 4500);  // 4.5초마다 배경 이미지 변경
-
-
 
 
 
@@ -108,30 +134,12 @@ gsap.from('.visual .big-logo-text > span', {
 
 
 
-// scroller 설정
-const bodyScroller = document.querySelector('.scroller');
-bodyScrollBar = Scrollbar.init(bodyScroller, {
-    speed: 10,
-    damping: 0.05,
-    mobile: {
-        speed: 0.6
-    }
-});
-bodyScrollBar.setPosition(0, 0);
-bodyScrollBar.track.xAxis.element.remove();
-ScrollTrigger.scrollerProxy(bodyScroller, {
-    scrollTop(value) {
-        if (arguments.length) {
-            bodyScrollBar.scrollTop = value;
-        }
-        return bodyScrollBar.scrollTop;
-    }
-});
-bodyScrollBar.addListener(ScrollTrigger.update);
-ScrollTrigger.defaults({
-    scroller: bodyScroller
-});
-Scrollbar.initAll(); //smooth-scrollbar (모든 스크롤영역에 data-scrollbar 적용)
+
+
+
+
+
+
 
 AOS.init({
     easing: 'ease-out-quart',
@@ -140,8 +148,11 @@ AOS.init({
 });
 
 
+
+
+
 gsap.registerPlugin(ScrollTrigger);
-let getAllAos = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'))
+let getAllAos = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'));
 getAllAos.length > 0 && getAllAos.forEach((item) => {
     gsap.to(item, {
         scrollTrigger: {
@@ -150,7 +161,7 @@ getAllAos.length > 0 && getAllAos.forEach((item) => {
             end: 'bottom center',
             once: true,
             onEnter: (scroll) => {
-                item.addClass('aos-animate');
+                item.classList.add('aos-animate');
             }
         }
     })
@@ -159,4 +170,15 @@ getAllAos.length > 0 && getAllAos.forEach((item) => {
 
 
 
-
+gsap.to('.pin', {
+    immediateRender: false,
+    scrollTrigger: {
+    trigger: ".section-2",
+    pin: true,
+    scrub: true,
+    start:'top top',
+    end: 'bottom top',
+    markers: true,
+    id: 'one'
+    }
+});
