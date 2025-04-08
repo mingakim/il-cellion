@@ -123,10 +123,18 @@ body {
     margin: 0 auto;
 }
 
+strong {
+    font-weight: 700;
+}
+
 img {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+
 
 
 /* 커스텀 */
@@ -169,6 +177,20 @@ img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 150px auto;
+}
+
+.header .sub-btn {
+    display: none;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.header .sub-btn > img {
+    width: 24px;
+    height: 24px;
 }
 
 .header .menu-box {
@@ -298,6 +320,54 @@ img {
     top: 0;
     transition: top .3s;
 }
+
+
+
+@media screen and (max-width: 960px) {
+    .header {
+        border: 0;
+        height: 62px;
+    }
+
+    .header .h_inner {
+        justify-content: space-between;
+    }
+
+    .header .logo {
+        margin-left: 0;
+    }
+
+    .header .logo .logo-box {    
+        width: 130px;    
+        background-size: 130px 42px;
+    }
+
+    .header .sub-btn {
+        display: flex;
+    }
+
+    .header .sub-btn > .img2 {
+        display: none;
+    }
+
+    .header .menu-box {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+    .header .h_inner {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header .h_inner {
+        padding-right: 15px;
+    }
+}
+
 /* header 끝 */
 
 
@@ -343,7 +413,8 @@ img {
 .visual .big-logo-text {
     margin-top: auto;
     line-height: 0.7;
-              /* 텍스트박스 높이를 줄이기위해 */
+            /* 텍스트박스 높이를 줄이기위해 */    
+    letter-spacing: -5px;
 }
 
 .visual .big-logo-text > span {
@@ -351,10 +422,31 @@ img {
         /* inline-block으로 설정해야 animation이 적용된다!!! */
     color: #fff;
     font-weight: 900;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
     font-size: clamp(30px, 15.667vw, 380px);
                /* (최소값,최적값,최대값) (30px,뷰포트 15.667%, 380px) */
     transform: translate(0, 0);    
+}
+
+.visual .big-logo-text > span:nth-child(2) {
+    margin-right: 40px;
+}
+
+@media screen and (max-width: 1023px) {
+    .visual .visual_title {
+        font-size: clamp(14px, 5.667vw, 18px);
+    }
+}
+
+
+@media screen and (max-width: 960px) {
+    .visual {
+        background-size: cover !important;
+    }
+
+    .visual .big-logo-text > span:nth-child(2) {
+        margin-right: 15px;
+    }
 }
 /* visual 끝 */
 
@@ -403,10 +495,6 @@ img {
 }
 
 
-.section-1 .card-2 > h3 > strong {
-    font-weight: 700;
-}
-
 @media screen and (max-width: 960px) {
     .section-1 .card-1 .txt-box h3 {
         margin-top: 50px;
@@ -446,9 +534,10 @@ img {
     height: 100vh;
     margin-bottom: 100px;
     display: flex;
-    justify-self: center;
+    justify-content: center;
     align-items: center;
 }
+
 
 .section-2 .bg-box h3 {
     padding-bottom: 100px;
@@ -458,8 +547,175 @@ img {
     margin-left: 6vw;
     color: #fff;
     margin-top: -10vh;
+    text-align: center;
+}
+
+.section-2 .s2-title {
+    margin-bottom: 80px;
+}
+
+.section-2 .s2-title .con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-2 .s2-title h2 {
+    font-weight: 700;
+    font-size: 68px;
+    line-height: 1.2;
+    min-width: 50%;
+}
+
+.section-2 .s2-title p {
+    font-size: clamp(14px, 4.667vw, 18px);
+    word-break: keep-all;
+    line-height: 1.2;
+}
+
+.section-2 .s-2_img ul {
+    display: flex;
+    gap: 10px;
 }
 
 
-/* section-2끝 */
+.section-2 .s-2_img ul > li {
+    width: 50%;
+    flex-grow: 1; 
+}
+
+
+.section-2 .s-2_img ul > li:first-child {
+    background-image: url(/아이엘셀리온images/img_cont_1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    border-radius: 20px;
+}
+
+.section-2 .s-2_img ul > li:first-child > a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;    
+}
+
+.section-2 .s-2_img ul > li:first-child > a > * {
+    display: block;
+    color: #fff;
+    text-align: center;
+}
+
+.section-2 .s-2_img ul > li:first-child > a > h3 {
+    font-size: 30px;
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+
+.section-2 .s-2_img ul > li:first-child > a > span {
+    font-size: 16px;
+}
+
+.section-2 .s-2_img ul > li:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+}
+
+.section-2 .s-2_img ul > li:last-child > div {
+    border-radius: 20px;
+    width: 100%;
+    height: 50%;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.section-2 .s-2_img ul > li:last-child > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #002060;;
+}
+
+.section-2 .s-2_img ul > li:last-child > div:last-child > p {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+
+@media screen and (max-width: 960px) {
+    .section-2 .s2-title h2 {
+        font-size: 24px;
+        padding-left: 5%;
+    }
+    
+    .section-2 .s2-title p {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .section-2 .s2-title p > .pc-only {
+        display: none;
+    }    
+
+    .section-2 .s-2_img {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .section-2 .s-2_img ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .section-2 .s-2_img ul > li {
+        width: 100%;
+        flex-grow: 1; 
+    }
+
+    .section-2 .s-2_img ul > li:first-child {
+        height: 400px;
+    }
+
+    .section-2 .s-2_img ul > li:last-child > div {
+        height: 150px;
+    }
+    
+}
+/* section-2 끝 */
+
+
+
+/* section-3 시작 */
+.section-3 .s-3-title {
+    padding-bottom: 120px;
+}
+
+
+.section-3 .s-3-title > h3 {
+    font-size: clamp(14px, 6.867vw, 45px);
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.section-3 .s-3_info 
+
+@media screen and (max-width: 960px ) {
+    .section-3 .s-3-title {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .section-3 .s-3-title > h3 {
+        word-break: keep-all;
+    }
+}
+/* section3 끝 */
+
 /* scroll끝 */

@@ -9,6 +9,10 @@ bodyScrollBar = Scrollbar.init(bodyScroller, {
 });
 
 
+
+
+
+
 //header 효과
 $('.header .menu-box > ul > li').mouseenter(function(){
     $('.header .logo .logo-box').addClass('active');
@@ -32,6 +36,10 @@ $('.header .menu-box > ul > li').mouseleave(function(){
     $('.header .nav-bg').removeClass('active color');   
 });
 
+$('.header .sub-btn').click(function(){
+    $(".header .sub-btn .img1").toggle(); 
+    $(".header .sub-btn .img2").toggle();
+})
 
 
 
@@ -61,11 +69,11 @@ bodyScrollBar.addListener(function (){
 
 
 
+
 //visual이미지 효과
-
-
-$('.visual').css('background-image', 'url(/아이엘셀리온images/bg_main_img1.png)')
+$('.visual').css('background-image', 'url(/아이엘셀리온images/bg_main_img1.png)');
 $('.visual').css('background-size', '100%');
+
 
 
 var ii = 0; // 이미지 변수
@@ -82,16 +90,21 @@ setInterval(() => {
     
     // 배경 이미지 변경
     $('.visual').css('background-image','url(/아이엘셀리온images/bg_main_img' + (ii + 1) + '.png)'); 
+    
         
+    
     if (mcnt % 2 == 1) {
         // 홀수 번째 이미지 (1, 3, ...) 커짐 (100% -> 120%)
         $('.visual').css('background-size', '120%');
-    } else {
+    } 
+    else {
         // 짝수 번째 이미지 (2, 4, ...) 작아짐 (120% -> 100%)
         $('.visual').css('background-size', '100%');
-    }       
+    }    
+    
 
 }, 4500);  // 4.5초마다 배경 이미지 변경
+
 
 
 
@@ -124,6 +137,7 @@ setInterval(() => {
 
 
 
+
 //visual big-logo-text효과    
 gsap.from('.visual .big-logo-text > span', {
     y: "100%",  // 아래에서 위로 올라오는 애니메이션
@@ -139,13 +153,13 @@ gsap.from('.visual .big-logo-text > span', {
 
 
 
-
-
 AOS.init({
     easing: 'ease-out-quart',
     duration: 1200,
     once: true,
 });
+
+
 
 
 
@@ -170,15 +184,23 @@ getAllAos.length > 0 && getAllAos.forEach((item) => {
 
 
 
+
+
+
+gsap.set('.pin', {
+    opacity: 0.8,
+}),
 gsap.to('.pin', {
-    immediateRender: false,
+    opacity: 1,
+    duration: 0.3,
+    ease: "none",
     scrollTrigger: {
-    trigger: ".section-2",
-    pin: true,
-    scrub: true,
-    start:'top top',
-    end: 'bottom top',
-    markers: true,
-    id: 'one'
-    }
+        pin : true,
+        trigger: '.pin',
+        scrub: 0.2,
+        start: "top top",
+        end : "50%",
+        toggleActions: 'play none none reverse',
+        mark: true,
+    },
 });
