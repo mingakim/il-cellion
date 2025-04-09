@@ -10,59 +10,93 @@ bodyScrollBar = Scrollbar.init(bodyScroller, {
 
 
 
-
-
-
-//header 효과
-$('.header .menu-box > ul > li').mouseenter(function(){
-    $('.header .logo .logo-box').addClass('active');
-    $('.header .menu-box').addClass('active');
-    $('.header .nav-bg').removeClass('active color');
-    $('.header .menu-box > ul > li').each(function() {        
-        // 자식 ul이 있는지 확인
-        if ($(this).children('ul').length > 0) {
-            // 자식 ul이 있으면 .nav-bg에 .active 클래스를 추가
-            $('.header .nav-bg').addClass('active');
-        } else {
-            // 자식 ul이 없으면 .nav-bg에 .color 클래스를 추가
-            $('.header .nav-bg').addClass('color');
-        }
-    });
+AOS.init({
+    easing: 'ease-out-quart',
+    duration: 1200,
+    once: true,
 });
 
-$('.header .menu-box > ul > li').mouseleave(function(){
-    $('.header .logo .logo-box').removeClass('active');
-    $('.header .menu-box').removeClass('active'); 
-    $('.header .nav-bg').removeClass('active color');   
+$(window).on('load', function () {
+    AOS.refresh();
 });
 
-$('.header .sub-btn').click(function(){
-    $(".header .sub-btn .img1").toggle(); 
-    $(".header .sub-btn .img2").toggle();
-})
 
 
 
-bodyScrollBar.addListener(function (){
-    let lastScrollTop = 0;
-    const delta = 15;    
-    const st = bodyScrollBar.scrollTop;
-    if(Math.abs(lastScrollTop - st) <= delta) return;
-    if(st > lastScrollTop && st > lastScrollTop > 0) {
-        $('.header').addClass('scroll-down').removeClass('scroll-up');   
+
+
+let lastScrollTop = 0;
+let scrolled = false;  // 스크롤 상태를 추적할 변수
+
+bodyScrollBar.addListener(function () {
+    const delta = 15;
+    const st = bodyScrollBar.scrollTop;  // 현재 스크롤 위치
+
+    if (Math.abs(lastScrollTop - st) <= delta) return;  // 작은 차이는 무시
+
+    
+   // 스크롤 내리기
+    if (st > lastScrollTop && st > delta) {
+        $('.header').addClass('scroll-down').removeClass('scroll-up');
         // 스크롤 내렸을 때
-    }
-    else {
+    } 
+    // 스크롤 올리기
+    else if (st < lastScrollTop && st > delta) {
         $('.header').removeClass('scroll-down').addClass('scroll-up');
         // 스크롤 올렸을 때
-    };
-    lastScrollTop = st;    
+    }
+    
+
+    // 스크롤이 맨 위 (top: 0)일 때, 헤더 상태 초기화
+    if (st === 0) {
+        $('.header').removeClass('scroll-down scroll-up');
+        $('.header .logo .logo-box').removeClass('active');
+        $('.header .menu-box').removeClass('active');
+        scrolled = false;  // 스크롤 상태를 초기화
+        $('.header .nav-bg').removeClass('color');
+    } 
+    else {
+        // 스크롤이 맨 위가 아니면 헤더에 상태 추가
+        $('.header .nav-bg').addClass('color');
+        $('.header .logo .logo-box').addClass('active');
+        $('.header .menu-box').addClass('active');
+        scrolled = true;  // 스크롤 상태를 활성화
+    }
+
+    lastScrollTop = st;  // 마지막 스크롤 위치 업데이트
 });
 
 
+// mouseenter / mouseleave 처리
+$('.header .menu-box > ul > li').mouseenter(function () {
+    // 메뉴에 hover가 들어오면
+    $('.header .logo .logo-box').addClass('active');
+    $('.header .menu-box').addClass('active');
+    
+    // 최초 위치(스크롤이 0일 때)일 때와 스크롤 상태가 상관없이 nav-bg에 active를 항상 추가
+    if (bodyScrollBar.scrollTop() === 0 || scrolled) {
+        $('.header .nav-bg').addClass('active');
+    }
+});
 
+$('.header .menu-box > ul > li').mouseleave(function () {
+    // 메뉴에서 hover가 빠져나가면
+    if (!scrolled) {  // 만약 스크롤이 되지 않았다면
+        $('.header .logo .logo-box').removeClass('active');
+        $('.header .menu-box').removeClass('active');
+        $('.header .nav-bg').removeClass('active');
+    }
+    else {
+        // 만약 스크롤 상태가 true이면, 메뉴 상태를 유지
+        return;
+    }
+});
 
-
+// 서브 버튼 클릭 이벤트 (변경 없음)
+$('.header .sub-btn').click(function () {
+    $(".header .sub-btn .img1").toggle();
+    $(".header .sub-btn .img2").toggle();
+});
 
 
 
@@ -125,12 +159,14 @@ setInterval(() => {
     $('.visual .visual_title:eq(' + titleIndex + ')').show();
 
     gsap.from('.visual .visual_title', {
-        y: '10%',
-        opacity: 0.0,
+        y: '15%',
+        opacity: 0,
         duration: 1,
         ease: 'Power1.easeIn',
     });
 }, 4500);
+
+
 
 
 
@@ -143,30 +179,15 @@ gsap.from('.visual .big-logo-text > span', {
     y: "100%",  // 아래에서 위로 올라오는 애니메이션
     duration: 0.2,
     ease: 'power1.in',
-    stagger: 0.13
+    stagger: 0.13,
 });
-
-
-
-
-
-
-
-
-AOS.init({
-    easing: 'ease-out-quart',
-    duration: 1200,
-    once: true,
-});
-
-
-
 
 
 
 
 gsap.registerPlugin(ScrollTrigger);
-let getAllAos = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'));
+
+let getAllAos = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'))
 getAllAos.length > 0 && getAllAos.forEach((item) => {
     gsap.to(item, {
         scrollTrigger: {
@@ -182,21 +203,34 @@ getAllAos.length > 0 && getAllAos.forEach((item) => {
 });
 
 
+// section-1 fade
+
+
+// gsap.to('.section-1 .img-box', {
+//     scrollTrigger: {
+//         trigger: '.section-1 .img-box',
+//         start: 'top center',
+//         end: 'bottom center',
+//         once: true,
+//     },
+// });
 
 
 
 
 
-gsap.set('.pin', {
+
+// section-2 pin
+gsap.set('.section-2', {
     opacity: 0.8,
 }),
-gsap.to('.pin', {
+gsap.to('.section-2', {
     opacity: 1,
     duration: 0.3,
     ease: "none",
     scrollTrigger: {
         pin : true,
-        trigger: '.pin',
+        trigger: '.section-2',
         scrub: 0.2,
         start: "top top",
         end : "50%",
@@ -204,3 +238,71 @@ gsap.to('.pin', {
         mark: true,
     },
 });
+
+
+
+
+var dur = 1,
+next = 1.5,
+fade = 0.3;
+
+
+mm.add("(min-width: 961px)", () => {
+
+    // section-3
+    var esgImg = gsap.utils.toArray('.section-3 .s-3_info .img-box');
+    gsap.set(esgImg, {
+        y: 90
+    });
+
+    var esgText = gsap.utils.toArray('.section-3 .s-3_info .text-box');
+    gsap.set(esgText, {
+        opacity: 0
+    });
+
+    var esgEnd = esgImg.length;
+    var esgImgH = 1000;
+    var easContentH = esgImgH * esgEnd;
+
+    var easAction = gsap.timeline({
+        defaults: {
+            ease: 'none',
+            stagger: next
+        },
+        paused: true
+    })
+    .to(esgImg, {
+        yPercent: 0,
+        duration: dur
+    })
+    .to(esgText, {
+        opacity: 1,
+        duration: fade
+    }, dur - fade)
+    .to(esgText, {
+        opacity: 0,
+        duration: fade
+    },dur*2)
+
+    const esgSlider = gsap.fromTo(easAction, {
+        time: dur
+    }, {
+        time: easAction.duration() - dur,
+        paused: true,
+    });
+
+    ScrollTrigger.create({
+        trigger: '.section-3 .s-3_info',
+        start: 'top 96px',
+        end: '+=' + `${easContentH}`,
+        pin: true,
+        animation: esgSlider,
+        scrub: 0.5,
+        //markers: true,
+    });
+})
+
+
+
+ScrollTrigger.refresh();
+ScrollTrigger.addEventListener("refresh", () => ScrollTrigger.sort());
