@@ -92,10 +92,10 @@ $('.header .menu-box > ul > li').mouseleave(function () {
     }
 });
 
-// 서브 버튼 클릭 이벤트 (변경 없음)
+// 서브 버튼 클릭 이벤트
 $('.header .sub-btn').click(function () {
-    $(".header .sub-btn .img1").toggle();
-    $(".header .sub-btn .img2").toggle();
+    $('.header .sub-btn .img1').toggle();
+    $('.header .sub-btn .img2').toggle();
 });
 
 
@@ -187,33 +187,16 @@ gsap.from('.visual .big-logo-text > span', {
 
 gsap.registerPlugin(ScrollTrigger);
 
-let getAllAos = Array.prototype.slice.call(document.querySelectorAll('[data-aos]'))
-getAllAos.length > 0 && getAllAos.forEach((item) => {
-    gsap.to(item, {
-        scrollTrigger: {
-            trigger: item,
-            start: 'top center',
-            end: 'bottom center',
-            once: true,
-            onEnter: (scroll) => {
-                item.classList.add('aos-animate');
-            }
-        }
-    })
-});
-
 
 // section-1 fade
-
-
-// gsap.to('.section-1 .img-box', {
-//     scrollTrigger: {
-//         trigger: '.section-1 .img-box',
-//         start: 'top center',
-//         end: 'bottom center',
-//         once: true,
-//     },
-// });
+gsap.to('.section-1 .img-box', {
+    scrollTrigger: {
+        trigger: '.section-1 .img-box',
+        start: 'top center',
+        end: 'bottom center',
+        once: true,
+    },
+});
 
 
 
@@ -242,14 +225,15 @@ gsap.to('.section-2', {
 
 
 
+
+// section-3
 var dur = 1,
 next = 1.5,
 fade = 0.3;
 
 
 mm.add("(min-width: 961px)", () => {
-
-    // section-3
+    
     var esgImg = gsap.utils.toArray('.section-3 .s-3_info .img-box');
     gsap.set(esgImg, {
         y: 90
@@ -306,3 +290,16 @@ mm.add("(min-width: 961px)", () => {
 
 ScrollTrigger.refresh();
 ScrollTrigger.addEventListener("refresh", () => ScrollTrigger.sort());
+
+
+
+
+
+// footer site
+$('footer .f-top .site').click(function(){
+    $(this).toggleClass('active');
+    $('footer .f-top .site > ul').toggleClass('active');
+    $('footer .f-top .site .icon .img1').toggle();
+    $('footer .f-top .site .icon .img2').toggle();    
+});
+

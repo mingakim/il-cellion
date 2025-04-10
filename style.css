@@ -234,7 +234,7 @@ img {
 }
 
 .header .menu-box.active ul > li:not(:hover) > a > span{
-    color: #1c1219;
+    color: #1c1e29;
 }
 
 
@@ -724,7 +724,7 @@ img {
 }
 
 .section-3 .s-3_info > li > .text-box {
-    width: 45%; 
+    width: 43%; 
     padding-left: 5%;
 }
 
@@ -801,7 +801,207 @@ img {
 /* section4 시작 */
 .section-4 {
     margin-top: 130px;
+    margin-bottom: 200px;
 }
 
+.section-4 .logo .big {
+    display: grid;
+    gap: 10px 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.section-4 .logo .small {
+    display: grid;
+    gap: 10px 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (min-width: 960px) and (max-width: 1140px) {
+    .section-4 .logo .big {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .section-4 .logo .small {
+        grid-template-columns: repeat(3, 1fr);
+    } 
+}
+
+@media screen and (max-width: 960px) {
+    .section-4 .s-title {
+        margin-bottom: 0;
+    }
+    .section-4 .logo .big {
+        gap: 5px 5px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+        
+    .section-4 .logo .small {
+        gap: 5px 5px;
+        grid-template-columns: repeat(2, 1fr);
+    } 
+
+    .section-4 .logo ul > li {
+        padding: 20px;
+    }
+}
 /* section4 끝 */
+
+
+/* footer 시작 */
+footer {    
+    border-top: 1px solid #f1f1f1;
+}
+
+footer .f-top {
+    padding-left: 210px;
+    padding-right: 210px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .f-top .logo {
+    width: 200px;
+    padding-top: 10px;
+}
+
+footer .f-top .site {
+    font-weight: 600;
+    position: relative;
+    min-width: 230px;   
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f1f1; 
+    cursor: pointer;
+    transition: border 0.2s ease-in-out;
+}
+
+footer .f-top .site.active {
+    border-color: #1c1e29;
+}
+
+footer .f-top .site .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #1c1e29;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .f-top .site .icon img {
+    width: 20px;
+    height: 20px;
+}
+
+footer .f-top .site .icon .img2 {
+    display: none;
+}
+
+footer .f-top .site ul {
+    display: none;
+}
+
+footer .f-top .site ul.active {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: -170px;
+    left: 0;
+    z-index: 10;
+    border: 1px solid #1c1e29;
+    background-color: #fff;
+    box-shadow:  0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer .f-top .site ul > li {
+    display: flex;
+}
+
+footer .f-top .site ul > li > a {
+    width: 100%;
+    padding: 5px 0;
+}
+
+footer .f-top .site ul > li:hover {
+    background-color: #395ddb;
+    color: #fff;
+}
+
+footer .f-bottom {
+    padding-left: 210px;
+    padding-right: 210px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .f-bottom .info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 20px;
+}
+
+footer .f-bottom span, 
+footer .f-bottom p {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+footer .f-bottom p {
+    padding-left: 30px;
+    line-height: 1.8;
+}
+
+@media screen and (max-width: 960px) {
+    footer .f-inner {
+        padding-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    } 
+
+    footer .f-top {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0px;
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column-reverse; 
+        align-items: flex-start;
+    }
+
+    footer .f-top .logo {
+        width: 40vw;
+    }
+    
+    footer .f-top .site {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    footer .f-bottom {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 20px;
+        padding-bottom: 0;
+        border-top: none;
+        flex-direction: column;
+    }
+
+    footer .f-bottom p {
+        padding-left: 0;
+        margin-top: 30px;
+    }
+
+}
+
+/* footer 끝 */
+
 /* scroll끝 */
