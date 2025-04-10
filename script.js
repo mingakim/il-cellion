@@ -48,12 +48,12 @@ bodyScrollBar.addListener(function () {
     
 
     // 스크롤이 맨 위 (top: 0)일 때, 헤더 상태 초기화
-    if (st === 0) {
+    if (st <= delta) {
         $('.header').removeClass('scroll-down scroll-up');
         $('.header .logo .logo-box').removeClass('active');
-        $('.header .menu-box').removeClass('active');
-        scrolled = false;  // 스크롤 상태를 초기화
+        $('.header .menu-box').removeClass('active');        
         $('.header .nav-bg').removeClass('color');
+        scrolled = false;
     } 
     else {
         // 스크롤이 맨 위가 아니면 헤더에 상태 추가
@@ -72,11 +72,7 @@ $('.header .menu-box > ul > li').mouseenter(function () {
     // 메뉴에 hover가 들어오면
     $('.header .logo .logo-box').addClass('active');
     $('.header .menu-box').addClass('active');
-    
-    // 최초 위치(스크롤이 0일 때)일 때와 스크롤 상태가 상관없이 nav-bg에 active를 항상 추가
-    if (bodyScrollBar.scrollTop() === 0 || scrolled) {
-        $('.header .nav-bg').addClass('active');
-    }
+    $('.header .nav-bg').addClass('active');    
 });
 
 $('.header .menu-box > ul > li').mouseleave(function () {
@@ -86,9 +82,9 @@ $('.header .menu-box > ul > li').mouseleave(function () {
         $('.header .menu-box').removeClass('active');
         $('.header .nav-bg').removeClass('active');
     }
-    else {
-        // 만약 스크롤 상태가 true이면, 메뉴 상태를 유지
-        return;
+
+    else {        
+        $('.header .nav-bg').removeClass('active');        
     }
 });
 
