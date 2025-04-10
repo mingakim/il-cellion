@@ -53,6 +53,7 @@ bodyScrollBar.addListener(function () {
         $('.header .logo .logo-box').removeClass('active');
         $('.header .menu-box').removeClass('active');        
         $('.header .nav-bg').removeClass('color');
+        $('.header .sub-btn .img1').attr('src', '/아이엘셀리온images/btn_menu-w.svg');
         scrolled = false;
     } 
     else {
@@ -60,6 +61,7 @@ bodyScrollBar.addListener(function () {
         $('.header .nav-bg').addClass('color');
         $('.header .logo .logo-box').addClass('active');
         $('.header .menu-box').addClass('active');
+        $('.header .sub-btn .img1').attr('src', '/아이엘셀리온images/btn_menu.svg');
         scrolled = true;  // 스크롤 상태를 활성화
     }
 
@@ -90,6 +92,7 @@ $('.header .menu-box > ul > li').mouseleave(function () {
 $('.header .sub-btn').click(function () {
     $('.header .sub-btn .img1').toggle();
     $('.header .sub-btn .img2').toggle();
+    $('.header .menu-box').toggleClass('show');
 });
 
 
