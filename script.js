@@ -48,7 +48,7 @@ bodyScrollBar.addListener(function () {
     
 
     // 스크롤이 맨 위 (top: 0)일 때, 헤더 상태 초기화
-    if (st <= delta) {
+    if (st <= delta) { //st === 0 으로 하면 아주 정확하게 스크롤 해야하기 때문에 delta값으로 비교함
         $('.header').removeClass('scroll-down scroll-up');
         $('.header .logo .logo-box').removeClass('active');
         $('.header .menu-box').removeClass('active');        
@@ -68,15 +68,13 @@ bodyScrollBar.addListener(function () {
 
 
 // mouseenter / mouseleave 처리
-$('.header .menu-box > ul > li').mouseenter(function () {
-    // 메뉴에 hover가 들어오면
+$('.header .menu-box > ul > li').mouseenter(function () {    
     $('.header .logo .logo-box').addClass('active');
     $('.header .menu-box').addClass('active');
     $('.header .nav-bg').addClass('active');    
 });
 
 $('.header .menu-box > ul > li').mouseleave(function () {
-    // 메뉴에서 hover가 빠져나가면
     if (!scrolled) {  // 만약 스크롤이 되지 않았다면
         $('.header .logo .logo-box').removeClass('active');
         $('.header .menu-box').removeClass('active');
