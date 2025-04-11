@@ -29,7 +29,7 @@ let lastScrollTop = 0;
 let scrolled = false;  // 스크롤 상태를 추적할 변수
 
 bodyScrollBar.addListener(function () {
-    const delta = 15;
+    const delta = 80;
     const st = bodyScrollBar.scrollTop;  // 현재 스크롤 위치
 
     if (Math.abs(lastScrollTop - st) <= delta) return;  // 작은 차이는 무시
@@ -37,13 +37,11 @@ bodyScrollBar.addListener(function () {
     
    // 스크롤 내리기
     if (st > lastScrollTop && st > delta) {
-        $('.header').addClass('scroll-down').removeClass('scroll-up');
-        // 스크롤 내렸을 때
+        $('.header').addClass('scroll-down').removeClass('scroll-up');        
     } 
     // 스크롤 올리기
     else {
         $('.header').removeClass('scroll-down').addClass('scroll-up');
-        // 스크롤 올렸을 때
     }
     
 
