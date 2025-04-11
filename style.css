@@ -147,6 +147,7 @@ img {
     left: 0;
     border-bottom: 1px solid rgba(241, 241, 241, 0.2);
     z-index: 100;
+    transition: top .5s ease-in-out;
 }
 
 .header .h_inner {
@@ -251,12 +252,10 @@ img {
 
 .header.scroll-down {
     top: -96px;
-    transition: top 1s;
 }
 
 .header.scroll-up {
     top: 0;
-    transition: top 1s;
 }
 
 
