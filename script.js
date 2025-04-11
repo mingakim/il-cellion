@@ -41,7 +41,7 @@ bodyScrollBar.addListener(function () {
         // 스크롤 내렸을 때
     } 
     // 스크롤 올리기
-    else if (st < lastScrollTop && st > delta) {
+    else {
         $('.header').removeClass('scroll-down').addClass('scroll-up');
         // 스크롤 올렸을 때
     }
@@ -93,10 +93,16 @@ $('.header .sub-btn').click(function () {
     $('.header .sub-btn .img1').toggle();
     $('.header .sub-btn .img2').toggle();
     $('.header .menu-box').toggleClass('show');
+    $('.header .h_inner').toggleClass('active');
 });
 
 
-
+$('.header .menu-box > ul > li').click(function () {
+    $(this).toggleClass('active');
+    $(this).siblings().removeClass('active');
+    $(this).find('ul').toggleClass('active');
+    $(this).siblings().find('ul').removeClass('active');
+});
 
 
 
