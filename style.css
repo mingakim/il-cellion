@@ -358,6 +358,11 @@ img {
         background-size: 130px 42px;
     }
 
+    .header .logo .logo-box.active {
+        width: 130px;
+        background-size: 130px 42px;
+    }
+
     .header .sub-btn {
         display: flex;
         position: relative;
